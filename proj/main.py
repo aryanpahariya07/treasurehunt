@@ -4,10 +4,10 @@ import time
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
-app.config['MYSQL_HOST'] = 'localhost'  # Replace with your MySQL host
-app.config['MYSQL_USER'] = 'root'   # Replace with your MySQL username
-app.config['MYSQL_PASSWORD'] = 'mysqllock'  # Replace with your MySQL password
-app.config['MYSQL_DB'] = 'datab'  # Replace with your MySQL database name
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'mysqllock'
+app.config['MYSQL_DB'] = 'datab'
 mysql = MySQL(app)
 
 start_times = {}
@@ -107,7 +107,7 @@ def game():
 
         if result:
             username = result[0]
-            session['username'] = username  # Store the username in the session
+            session['username'] = username
             return redirect('/game')
         else:
             message = "Invalid email or password"
@@ -121,7 +121,7 @@ def game():
 def game1():
     print("check")
     if request.method == 'POST':
-        username = session['username']  # Retrieve username from the session
+        username = session['username']
         end_time = (time.time())
         print("ff")
         time_taken = end_time - session['start_time']
@@ -138,7 +138,6 @@ def game1():
         mysql.connection.commit()
         cursor.close()
     else:
-        # Set the start time for the user when game1.html is initially rendered
         session['start_time'] = (time.time())
         return render_template('game1.html')
 
@@ -147,7 +146,7 @@ def game1():
 def game2():
     print("check")
     if request.method == 'POST':
-        username = session['username']  # Retrieve username from the session
+        username = session['username']
         end_time = (time.time())
         print("ff")
         time_taken = end_time - session['start_time']
@@ -164,7 +163,6 @@ def game2():
         mysql.connection.commit()
         cursor.close()
     else:
-        # Set the start time for the user when game1.html is initially rendered
         session['start_time'] = int(time.time())
 
     return render_template('game2.html')
@@ -174,7 +172,7 @@ def game2():
 def game3():
     print("check")
     if request.method == 'POST':
-        username = session['username']  # Retrieve username from the session
+        username = session['username']
         end_time = (time.time())
         print("ff")
         time_taken = end_time - session['start_time']
@@ -191,7 +189,6 @@ def game3():
         mysql.connection.commit()
         cursor.close()
     else:
-        # Set the start time for the user when game1.html is initially rendered
         session['start_time'] = int(time.time())
 
     return render_template('game3.html')
@@ -201,7 +198,7 @@ def game3():
 def game4():
     print("check")
     if request.method == 'POST':
-        username = session['username']  # Retrieve username from the session
+        username = session['username']
         end_time = (time.time())
         print("ff")
         time_taken = end_time - session['start_time']
@@ -218,7 +215,6 @@ def game4():
         mysql.connection.commit()
         cursor.close()
     else:
-        # Set the start time for the user when game1.html is initially rendered
         session['start_time'] = int(time.time())
 
     return render_template('game4.html')
@@ -228,7 +224,7 @@ def game4():
 def game5():
     print("check")
     if request.method == 'POST':
-        username = session['username']  # Retrieve username from the session
+        username = session['username']
         end_time = (time.time())
         print("ff")
         time_taken = end_time - session['start_time']
@@ -245,7 +241,6 @@ def game5():
         mysql.connection.commit()
         cursor.close()
     else:
-        # Set the start time for the user when game1.html is initially rendered
         session['start_time'] = int(time.time())
 
     return render_template('game5.html')

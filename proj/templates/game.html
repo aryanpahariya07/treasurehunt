@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="/static/popup.js"></script> <!-- Include popup.js file -->
+  <title>Treasure Hunt</title>
+  <script>
+    function redirectToWebsite() {
+      var latitude = parseFloat(document.getElementById("latitude").value);
+      var longitude = parseFloat(document.getElementById("longitude").value);
+
+      if (!isNaN(latitude) && !isNaN(longitude)) {
+        if (latitude === 1 && longitude === 5) {
+          window.open('/game1');
+        } else if (latitude === 24 && longitude === 5) {
+          window.open('/game2');
+        } else if (latitude === 14 && longitude === 11) {
+          window.open('/game3');
+        } else if (latitude === 13 && longitude === 11) {
+          window.open('/game4');
+        }else if (latitude === 40 && longitude === 50) {
+          window.open('https://www.youtube.com/watch?v=BBJa32lCaaY');
+        }else if (latitude === 64 && longitude === 87) {
+          window.open('/game5');
+        }else if (latitude === 90 && longitude === 90) {
+          window.open('/wrong');
+        }else if (latitude === 71 && longitude === 28) {
+          window.open('/end');
+        }else {
+          popup1();
+        }
+
+        // Clear input fields
+        document.getElementById("latitude").value = "";
+        document.getElementById("longitude").value = "";
+      }
+    }
+
+
+  </script>
+</head>
+<body>
+   <h1>Welcome, {{ username }}</h1>
+  <img src="/static/images/map.jpg" alt="Treasure Hunt" style="width: 100%; max-height: 400px;">
+  <p>Enter the co-ordinates</p>
+  <label for="latitude">X co-ordinates:</label>
+  <input type="text" id="latitude" placeholder="">
+  <br>
+  <label for="longitude">Y co-ordinates:</label>
+  <input type="text" id="longitude" placeholder="">
+
+  <button onclick="redirectToWebsite()">Go</button>
+  <br>
+  <br>
+  <a onclick="popup2()"><span style="color: blue; text-decoration: underline;">What to do?</span></a>
+
+
+
+
+</body>
+</html>

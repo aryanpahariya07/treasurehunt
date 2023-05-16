@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treasure Hunt</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+  <!-- Include SweetAlert library -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    var count = 0;
+    function verifyAnswer() {
+      var answer = document.getElementById("decrypted-message").value.trim().toLowerCase();
+      var unsuccessfulAttempt = count;
+
+      if (answer === "answer") {
+        swal({
+          title: "You solved the challenge!",
+          text: "try going 23 units right",
+          icon: "success",
+          button: {
+            text: "Close",
+            className: "sweet-alert-button",
+          },
+        }).then(function () {
+          // Send AJAX request to game2 endpoint
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "/game1", true);
+          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+              // Handle response
+              console.log(xhr.responseText);
+              window.close();
+            }
+          };
+          xhr.send("count=" + count);
+        });
+      } else {
+        count++;
+        swal("Oops!", "That's not the correct answer. Please try again.", "error");
+      }
+
+      return false;
+    }
+  </script>
+  <style>
+    .sweet-alert-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 4px;
+      text-align: center;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Challenge: Decoding the Message</h1>
+    <p>Enter answer to continue</p>
+    <p>Here's the encrypted message:</p>
+    <p class="encrypted-message">Vrphwklqj zloo vhh xvhixo.</p>
+    <form onsubmit="return verifyAnswer()" method="post">
+      <div>
+        <label for="decrypted-message">Decrypted Message:</label>
+        <input type="text" id="decrypted-message" name="decrypted-message" required>
+      </div>
+      <div>
+        <input type="hidden" id="count" name="count" value="">
+        <input type="submit" value="Enter">
+      </div>
+    </form>
+  </main>
+</body>
+</html>

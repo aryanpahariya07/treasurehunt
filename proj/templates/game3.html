@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treasure Hunt</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+  <!-- Include SweetAlert library -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    var count = 0;
+    function verifyAnswer() {
+      var answer = parseInt(document.getElementById("tria-count").value.trim(), 10);
+      var unsuccessfulAttempt = count;
+      if (answer === 14) {
+        swal({
+          title: "You solved the challenge!",
+          text: "ON YOUR LEFT",
+          icon: "success",
+          button: {
+            text: "Close",
+            className: "sweet-alert-button",
+          },
+        }).then(function () {
+          // Send AJAX request to game2 endpoint
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "/game1", true);
+          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+              // Handle response
+              console.log(xhr.responseText);
+              open("", "_self").close()
+            }
+          };
+          xhr.send("count=" + count);
+        });
+      } else {
+        count++;
+        swal("Oops!", "That's not the correct answer. Please try again.", "error");
+      }
+      return false;
+    }
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .shapes-answer {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+
+  <main>
+    <h2>Challenge: Find the Shapes</h2>
+    <p>Look at the image below and count the number of triangles present.</p>
+    <img src="tria.jpg" alt="tria Image">
+
+    <form onsubmit="return verifyAnswer()">
+      <div class="tria-answer">
+        <label for="tria-count">Number of triangles:</label>
+        <input type="number" id="tria-count" name="tria-count" required>
+      </div>
+      <div>
+        <input type="hidden" name="challenge-number" value="6">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+  </main>
+
+</body>
+</html>

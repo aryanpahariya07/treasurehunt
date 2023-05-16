@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sudoku</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 300px;
+    }
+    td {
+      border: 1px solid black;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+    }
+    .empty {
+      background-color: lightgray;
+    }
+  </style>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    var count = 0;
+    function checkSolution() {
+      var unsuccessfulAttempt = count;
+      var solution = [
+        [5, 3, 4, 6, 7, 8, 9, 1, 2],
+        [6, 7, 2, 1, 9, 5, 3, 4, 8],
+        [1, 9, 8, 3, 4, 2, 5, 6, 7],
+        [8, 5, 9, 7, 6, 1, 4, 2, 3],
+        [4, 2, 6, 8, 5, 3, 7, 9, 1],
+        [7, 1, 3, 9, 2, 4, 8, 5, 6],
+        [9, 6, 1, 5, 3, 7, 2, 8, 4],
+        [2, 8, 7, 4, 1, 9, 6, 3, 5],
+        [3, 4, 5, 2, 8, 6, 1, 7, 9]
+      ];
+
+      var table = document.getElementById("sudokuTable");
+      var cells = table.getElementsByTagName("td");
+      var isCorrect = true;
+
+      for (var i = 0; i < cells.length; i++) {
+        var cell = cells[i];
+        var userInput = cell.firstChild.value;
+        var row = Math.floor(i / 9);
+        var col = i % 9;
+        console.log("Name: " + userInput);
+        cell.style.backgroundColor = "white";
+        if(userInput===undefined){}
+        else{
+            if (parseInt=== null || parseInt(userInput) !== solution[row][col]) {
+            isCorrect=false;
+
+          }
+        }
+        console.log(isCorrect);
+      }
+
+      if (isCorrect) {
+        swal({
+          title: "You solved the challenge!",
+          text: "treasure awaits at(71,28)",
+          icon: "success",
+          button: {
+            text: "Close",
+            className: "sweet-alert-button",
+          },
+        }).then(function () {
+         document.getElementById("unsuccessful-attempt").value = unsuccessfulAttempt;
+         window.close();
+        });
+      } else {
+        count++;
+        swal("Completed?", "Go to (90,90)", "huh");
+
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Sudoku</h1>
+  <table id="sudokuTable">
+    <tr>
+      <td>5</td>
+      <td>3</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>7</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>1</td>
+      <td>9</td>
+      <td>5</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+    </tr>
+    <tr>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>9</td>
+      <td>8</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>6</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>6</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>8</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>3</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>2</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>6</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>2</td>
+      <td>8</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+    </tr>
+    <tr>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>4</td>
+      <td>1</td>
+      <td>9</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>8</td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td class="empty"><input type="number" min="1" max="9"></td>
+      <td>7</td>
+      <td>9</td>
+    </tr>
+    <!-- Continue adding rows and cells as needed -->
+  </table>
+  <br>
+  <button onclick="checkSolution()">Check Solution</button>
+</body>
+</html>
+

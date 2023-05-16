@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treasure Hunt</title>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    var count = 0;
+    function verifyAnswer() {
+      var answer = document.getElementById("odd-one-out").value.trim().toLowerCase();
+      var unsuccessfulAttempt = count;
+      if (answer === 'a') {
+        swal({
+          title: "You solved the challenge!",
+          text: "MOVE -10I+6J",
+          icon: "success",
+          button: {
+            text: "Close",
+            className: "sweet-alert-button",
+          },
+        }).then(function () {
+          // Send AJAX request to game2 endpoint
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "/game1", true);
+          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+              // Handle response
+              console.log(xhr.responseText);
+              window.close();
+            }
+          };
+          xhr.send("count=" + count);
+        });
+      } else {
+        count++;
+        swal("Oops!", "That's not the correct answer. Please try again.", "error");
+      }
+
+      return false;
+    }
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .image-grid img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border: 2px solid black;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h2>Challenge:Spot the Odd One Out</h2>
+    <p>Three friends A, B, and C are sitting in a room. One of them is lying, but only one statement is true. Can you figure out who is lying?</p>
+
+<ul>
+  <li>A says, "B is lying."</li>
+  <li>B says, "C is lying."</li>
+  <li>C says, "I am lying."</li>
+</ul>
+
+<p></p>
+
+
+    <form onsubmit="return verifyAnswer()">
+      <div>
+        <label for="odd-one-out">Can you determine who is lying?</label>
+        <input type="text" id="odd-one-out" name="odd-one-out" required>
+      </div>
+      <div>
+        <input type="hidden" name="challenge-number" value="7">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+  </main>
+
+
+</body>
+</html>

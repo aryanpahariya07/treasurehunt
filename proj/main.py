@@ -13,17 +13,17 @@ mysql = MySQL(app)
 start_times = {}
 
 
-@app.route('/')
+@app.route('/app/')
 def home():
     return render_template('index.html')
 
 
-@app.route('/create')
+@app.route('/app/create')
 def create():
     return render_template('create.html')
 
 
-@app.route('/start', methods=['GET', 'POST'])
+@app.route('/app/start', methods=['GET', 'POST'])
 def start():
     if request.method == 'POST':
         username = request.form['username']
@@ -89,12 +89,12 @@ def start():
     return render_template('start.html')
 
 
-@app.route('/login')
+@app.route('/app/login')
 def login():
     return render_template('login.html')
 
 
-@app.route('/game', methods=['GET', 'POST'])
+@app.route('/app/game', methods=['GET', 'POST'])
 def game():
     if request.method == 'POST':
         email = request.form['email']
@@ -108,7 +108,7 @@ def game():
         if result:
             username = result[0]
             session['username'] = username
-            return redirect('/game')
+            return redirect('/app/game')
         else:
             message = "Invalid email or password"
             return render_template('login.html', message=message)
@@ -117,7 +117,7 @@ def game():
         return render_template('game.html', username=username)
 
 
-@app.route('/game1', methods=['GET', 'POST'])
+@app.route('/app/game1', methods=['GET', 'POST'])
 def game1():
     print("check")
     if request.method == 'POST':
@@ -142,7 +142,7 @@ def game1():
         return render_template('game1.html')
 
 
-@app.route('/game2', methods=['GET', 'POST'])
+@app.route('/app/game2', methods=['GET', 'POST'])
 def game2():
     print("check")
     if request.method == 'POST':
@@ -168,7 +168,7 @@ def game2():
     return render_template('game2.html')
 
 
-@app.route('/game3', methods=['GET', 'POST'])
+@app.route('/app/game3', methods=['GET', 'POST'])
 def game3():
     print("check")
     if request.method == 'POST':
@@ -194,7 +194,7 @@ def game3():
     return render_template('game3.html')
 
 
-@app.route('/game4', methods=['GET', 'POST'])
+@app.route('/app/game4', methods=['GET', 'POST'])
 def game4():
     print("check")
     if request.method == 'POST':
@@ -220,7 +220,7 @@ def game4():
     return render_template('game4.html')
 
 
-@app.route('/game5', methods=['GET', 'POST'])
+@app.route('/app/game5', methods=['GET', 'POST'])
 def game5():
     print("check")
     if request.method == 'POST':
@@ -246,17 +246,17 @@ def game5():
     return render_template('game5.html')
 
 
-@app.route('/wrong')
+@app.route('/app/wrong')
 def wrong():
     return render_template('wrong.html')
 
 
-@app.route('/end')
+@app.route('/app/end')
 def end():
     return render_template('end.html')
 
 
-@app.route('/game_complete', methods=['POST'])
+@app.route('/app/game_complete', methods=['POST'])
 def game_complete():
     game_name = request.form['game_name']
     elapsed_time = time.time() - start_times[game_name]

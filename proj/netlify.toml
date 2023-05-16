@@ -1,0 +1,9 @@
+[build]
+command = "pip install -r requirements.txt"
+# Add the following lines
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+# Add the following line
+MYSQL_CONFIG = "/opt/buildhome/python3.8/bin/mysql_config"

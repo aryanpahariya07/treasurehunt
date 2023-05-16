@@ -145,16 +145,22 @@ def game1():
 
 @app.route('/game2', methods=['GET', 'POST'])
 def game2():
+    print("check")
     if request.method == 'POST':
         username = session['username']  # Retrieve username from the session
-        end_time = int(time.time())
+        end_time = (time.time())
+        print("ff")
         time_taken = end_time - session['start_time']
-        unsuccessful_attempt = int(request.form['unsuccessful_attempt'])
+        print(time_taken)
+        print(username)
 
+        unsuccessful_attempt = int(request.form['count'])
+        print(unsuccessful_attempt)
         cursor = mysql.connection.cursor()
         cursor.execute("UPDATE game_stat SET  unsuccessful_attempt=%s,time_taken = %s "
                        "WHERE username = %s AND gameid = 2",
                        (unsuccessful_attempt, time_taken, username))
+        print("done")
         mysql.connection.commit()
         cursor.close()
     else:
@@ -166,16 +172,22 @@ def game2():
 
 @app.route('/game3', methods=['GET', 'POST'])
 def game3():
+    print("check")
     if request.method == 'POST':
         username = session['username']  # Retrieve username from the session
-        end_time = int(time.time())
+        end_time = (time.time())
+        print("ff")
         time_taken = end_time - session['start_time']
-        unsuccessful_attempt = int(request.form['unsuccessful_attempt'])
+        print(time_taken)
+        print(username)
 
+        unsuccessful_attempt = int(request.form['count'])
+        print(unsuccessful_attempt)
         cursor = mysql.connection.cursor()
         cursor.execute("UPDATE game_stat SET  unsuccessful_attempt=%s,time_taken = %s "
                        "WHERE username = %s AND gameid = 3",
                        (unsuccessful_attempt, time_taken, username))
+        print("done")
         mysql.connection.commit()
         cursor.close()
     else:
@@ -187,16 +199,22 @@ def game3():
 
 @app.route('/game4', methods=['GET', 'POST'])
 def game4():
+    print("check")
     if request.method == 'POST':
         username = session['username']  # Retrieve username from the session
-        end_time = int(time.time())
+        end_time = (time.time())
+        print("ff")
         time_taken = end_time - session['start_time']
-        unsuccessful_attempt = int(request.form['unsuccessful_attempt'])
+        print(time_taken)
+        print(username)
 
+        unsuccessful_attempt = int(request.form['count'])
+        print(unsuccessful_attempt)
         cursor = mysql.connection.cursor()
         cursor.execute("UPDATE game_stat SET  unsuccessful_attempt=%s,time_taken = %s "
                        "WHERE username = %s AND gameid = 4",
                        (unsuccessful_attempt, time_taken, username))
+        print("done")
         mysql.connection.commit()
         cursor.close()
     else:
@@ -208,16 +226,22 @@ def game4():
 
 @app.route('/game5', methods=['GET', 'POST'])
 def game5():
+    print("check")
     if request.method == 'POST':
         username = session['username']  # Retrieve username from the session
-        end_time = int(time.time())
+        end_time = (time.time())
+        print("ff")
         time_taken = end_time - session['start_time']
-        unsuccessful_attempt = int(request.form['unsuccessful_attempt'])
+        print(time_taken)
+        print(username)
 
+        unsuccessful_attempt = int(request.form['count'])
+        print(unsuccessful_attempt)
         cursor = mysql.connection.cursor()
         cursor.execute("UPDATE game_stat SET  unsuccessful_attempt=%s,time_taken = %s "
                        "WHERE username = %s AND gameid = 5",
                        (unsuccessful_attempt, time_taken, username))
+        print("done")
         mysql.connection.commit()
         cursor.close()
     else:

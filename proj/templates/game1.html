@@ -27,15 +27,13 @@
             className: "sweet-alert-button",
           },
         }).then(function () {
-          // Send AJAX request to game2 endpoint
           var xhr = new XMLHttpRequest();
           xhr.open("POST", "/game1", true);
           xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-              // Handle response
               console.log(xhr.responseText);
-              window.close();
+              open("", "_self").close()
             }
           };
           xhr.send("count=" + count);

@@ -65,8 +65,17 @@
             className: "sweet-alert-button",
           },
         }).then(function () {
-         document.getElementById("unsuccessful-attempt").value = unsuccessfulAttempt;
-         window.close();
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "/game2", true);
+          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+              // Handle response
+              console.log(xhr.responseText);
+              window.close();
+            }
+          };
+          xhr.send("count=" + count);
         });
       } else {
         count++;

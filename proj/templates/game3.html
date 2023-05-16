@@ -26,9 +26,8 @@
             className: "sweet-alert-button",
           },
         }).then(function () {
-          // Send AJAX request to game2 endpoint
           var xhr = new XMLHttpRequest();
-          xhr.open("POST", "/game1", true);
+          xhr.open("POST", "/game3", true);
           xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
@@ -68,7 +67,7 @@
   <main>
     <h2>Challenge: Find the Shapes</h2>
     <p>Look at the image below and count the number of triangles present.</p>
-    <img src="tria.jpg" alt="tria Image">
+    <img src="/static/images/tria.jpg" alt="tria Image">
 
     <form onsubmit="return verifyAnswer()">
       <div class="tria-answer">
